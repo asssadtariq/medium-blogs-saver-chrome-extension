@@ -14,7 +14,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                     var previousBlogs = null;
                     chrome.storage.local.get(null, (data) => {
                         previousBlogs = data.blogs
-                        scrapedData && console.log(scrapedData)
                         
                         if (scrapedData && scrapedData?.blogContent === '') {
                             chrome.runtime.sendMessage({
@@ -32,7 +31,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                                 'blogs': previousBlogs
                             }).then(
                                 ()=>{
-                                    console.log("Blog Added Successfully");
                                     chrome.runtime.sendMessage({
                                         action: 'updateDOM'
                                     })
@@ -44,17 +42,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 } catch (err) {
                     console.error(err)
                 }
-                console.log("Scraping Completed");
             });
         })
 
-        console.log("Saving Completed");
     }
 
     // clear the chrome.storage.local
     if (message.action === 'clearBlogs') {
         chrome.storage.local.clear(() => {
-            console.log("Storage Cleared");
             chrome.runtime.sendMessage({
                 action: 'updateDOM'
             })

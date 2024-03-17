@@ -2,18 +2,14 @@
 function getTotalBlogs() {
     chrome.storage.local.get(null, (data)=>{
         const totalBlogs = data.blogs ? data.blogs.length : 0;
-        console.log("Total Blogs ", totalBlogs)
         updateTotalBlogsDOMElement(totalBlogs)
     })
 }
 
 // update DOM element innerText
 function updateTotalBlogsDOMElement(totalBlogs) {
-    console.log("updating DOM - ", totalBlogs);
     const ele = document.getElementById("totalBlogs");
-    console.log(ele, ele.innerText);
     ele.innerText = totalBlogs;
-    console.log(ele, ele.innerText);
     void ele.offsetHeight;
 }
 
@@ -66,7 +62,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 // removing alert message
 const crossBtn = document.getElementById('cross-btn')
 crossBtn.addEventListener('click', () => {
-    console.log('asad')
     const alertBox = document.getElementById('alert-box');
     alertBox.style.display = 'none';
 })

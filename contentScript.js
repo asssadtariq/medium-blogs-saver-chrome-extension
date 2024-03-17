@@ -1,7 +1,6 @@
 (() => {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         if (message['action'] === 'scrape') {
-            console.log("Extracting blog ... ")
             let blogTitle = document.querySelector('[data-testid="storyTitle"]')
             blogTitle = blogTitle ? blogTitle.innerText : "";
     
