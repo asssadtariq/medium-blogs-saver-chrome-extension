@@ -1,0 +1,35 @@
+{
+    "name": "MediumBlogsScraper",
+    "version": "0.1.0",
+    "description": "An extension to scrape medium blog",
+    "author": "Asad Tariq",
+    "background": {
+        "service_worker": "background.js",
+        "type":"module"
+      },
+      "content_scripts": [
+        {
+          "matches": [
+            "http://*/*",
+            "https://*/*"
+        ],
+          "js": ["contentScript.js"],
+          "type":"module"
+        }
+      ],
+      "permissions": [
+        "storage", "tabs","activeTab","scripting","alarms"
+      ],
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Medium Blogs Extractor",
+        "default_icon": {
+          "32": "assets/medium.png"
+        }
+    },
+    "manifest_version": 3
+}
